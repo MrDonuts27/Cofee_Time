@@ -10,7 +10,7 @@ const EditprofileScreen = ({navigation}) => {
             style={styles.profileImage}
           />
           <TouchableOpacity style={styles.editProfileButton}>
-            <Text style={styles.editProfileText}>Change Photo</Text>
+            <Text style={styles.editProfileText}>Change Photo</Text> 
           </TouchableOpacity>
         </View>
         <View style={styles.formContainer}>
