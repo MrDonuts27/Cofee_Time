@@ -5,9 +5,7 @@ export default function MenuCard(props) {
     return (
         <View style={styles.Cardcontainer}>
             <TouchableOpacity>
-                <View style={{ alignContent: 'center' }}>
-                    <Image resizeMode="contain" style={styles.imgfream} source={require('../fakepic/1.jpg')} />
-                </View>
+                    <Image style={styles.imgfream} source={require('../fakepic/1.jpg')} />
                 <View style={styles.Cardcontent}>{props.children}</View>
             </TouchableOpacity>
         </View>
@@ -16,10 +14,9 @@ export default function MenuCard(props) {
 
 const styles = StyleSheet.create({
     Cardcontainer: {
-        marginHorizontal: 5,
         backgroundColor: '#F5E7C5',
         borderRadius: 15,
-        elevation: 10,
+        elevation: 5,
         marginBottom: 25,
         shadowColor: 'black',
         shadowRadius: 2,
@@ -29,19 +26,19 @@ const styles = StyleSheet.create({
             width: 3
         },
         flexDirection: 'column',
-        padding: 10,
-        width: 160,
+        padding: 15,
+        width: '45%',
+        alignItems: 'center',
 
     },
     imgfream: {
-        padding: 20,
+        resizeMode: 'cover',
         borderRadius: 10,
-        marginBottom: 10,
-        width: 140,
-        height: 140
-
+        width: '100%',
+        height: undefined,
+        aspectRatio: 1,
     },
     Cardcontent: {
-        padding: 5,
+        paddingTop: 10,
     }
 });
