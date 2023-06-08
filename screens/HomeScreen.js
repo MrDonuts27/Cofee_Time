@@ -15,9 +15,6 @@ export default function HomeScreen() {
                 <Text style={styles.Boxh1}>เลือกเมล็ดให้เหมาะกับอุปกรณ์ที่ใช้ในการชงกาแฟ</Text>
                 <Text style={styles.Boxh2}>เนื่องจากกาแฟมีระดับการคั่วที่แตกต่าง อุปกรณ์ชงกาแฟก็มีหลากหลาย </Text>
                 </View>
-
-
-
             </View>
             <Text style={GlobalStyles.H1}>Other</Text>
         </SafeAreaView>
