@@ -12,7 +12,6 @@ const nav = createBottomTabNavigator();
 
 const Navigationbar = () => {
     return (
-        <NavigationContainer>
             <nav.Navigator screenOptions={{
                 tabBarStyle: {
                     position: 'absolute',
@@ -85,7 +84,6 @@ const Navigationbar = () => {
                     }}
                 />
             </nav.Navigator>
-        </NavigationContainer>
     );
 };
 

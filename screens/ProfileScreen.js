@@ -11,6 +11,8 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import EditprofileScreen from '../screens/EditprofileScreen';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 
 const ProfileStack = createStackNavigator();
 
@@ -31,6 +33,17 @@ const ProductCard = () => {
 };
 
 const ProfilePage = ({ navigation }) => {
+
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+              navigation.navigate('SignIn');
+            })
+            .catch((error) => {
+              console.error('Logout Error:', error);
+            });
+        };
+
     return (
         <SafeAreaView style={GlobalStyles.SafeAreaViewstyle}>
             <View style={styles.profileContainer}>
@@ -41,7 +54,7 @@ const ProfilePage = ({ navigation }) => {
                     Profile
                 </Text>
                 <Image source={require('../fakepic/2.jpg')} style={styles.profileImage} />
-                <Text style={[styles.cardTitle, { color: 'black' }]}>lorem ipsum dolor sit amet</Text>
+                <Text style={[styles.cardTitle, { color: 'black' }]}>555</Text>
                 {/*ชื่อ user*/}
                 <TouchableOpacity style={styles.editProfileButton} onPress={() => navigation.navigate('Edit Profile')}>
                     <Text style={styles.editProfileText}>Edit Profile</Text>
@@ -73,7 +86,7 @@ const ProfilePage = ({ navigation }) => {
                 <Text style={styles.favButtonText}>My Favourites</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.logoutButton}>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                 <Text style={styles.logoutButtonText}>Logout</Text>
             </TouchableOpacity>
         </SafeAreaView>);
