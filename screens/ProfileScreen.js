@@ -11,8 +11,11 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import EditprofileScreen from '../screens/EditprofileScreen';
-import { auth } from '../firebase';
+import { auth , currentUser } from '../firebase';
 import { signOut } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+
+
 
 const ProfileStack = createStackNavigator();
 
@@ -33,6 +36,17 @@ const ProductCard = () => {
 };
 
 const ProfilePage = ({ navigation }) => {
+    const [userEmail, setUserEmail] = useState('');
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          setUserEmail(user.email);
+        }
+      });
+  
+      return () => unsubscribe();
+    }, []);
 
     const handleLogout = () => {
         signOut(auth)
@@ -54,7 +68,7 @@ const ProfilePage = ({ navigation }) => {
                     Profile
                 </Text>
                 <Image source={require('../fakepic/2.jpg')} style={styles.profileImage} />
-                <Text style={[styles.cardTitle, { color: 'black' }]}>555</Text>
+                <Text style={[styles.cardTitle, { color: 'black' }]}>{userEmail}</Text>
                 {/*ชื่อ user*/}
                 <TouchableOpacity style={styles.editProfileButton} onPress={() => navigation.navigate('Edit Profile')}>
                     <Text style={styles.editProfileText}>Edit Profile</Text>
