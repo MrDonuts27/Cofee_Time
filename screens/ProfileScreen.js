@@ -11,7 +11,7 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import EditprofileScreen from '../screens/EditprofileScreen';
-import { auth , currentUser } from '../firebase';
+import { auth , currentUser } from '../AppConfig/firebase';
 import { signOut } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 

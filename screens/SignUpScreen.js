@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, KeyboardAvoidingView } from 'react-native';
 import styles from '../styles/AuthStyles';
-import { auth } from '../firebase';
+import { auth } from '../AppConfig/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-
 
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 import styles from '../styles/AuthStyles';
-import { auth } from '../firebase';
+import { auth } from '../AppConfig/firebase';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const SignIn = ({ navigation }) => {
@@ -52,9 +52,19 @@ const SignIn = ({ navigation }) => {
                 <TouchableOpacity style={styles.button} onPress={handleSignIn}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-                    <Text style={styles.buttonText}>Register</Text>
-                </TouchableOpacity>
+                <View style={{
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    padding: 10,
+                    flexDirection:'row'
+                }}>
+                    <Text>Don’t have an account?</Text>
+                        <TouchableOpacity onPress={handleSignUp}>
+                            <Text style={{color:'red',marginLeft:3}}>Sign Up</Text>
+                        </TouchableOpacity>
+                    
+                    <TouchableOpacity onPress={handleSignUp} color="red" />
+                </View>
             </View>
         </View>
     );
