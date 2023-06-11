@@ -9,10 +9,11 @@ export default function SearchBar() {
                 marginVertical: 15,
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginBottom: 0,
             }}>
             <TextInput
                 style={{
-                    width: "100%",
+                    width: "90%",
                     backgroundColor: '#F5E7C5',
                     fontSize: 16,
                     padding: 10,
@@ -31,7 +32,7 @@ export default function SearchBar() {
             <Ionicons
                 style={{
                     position: 'absolute',
-                    right:15
+                    right:40
                 }}
                 size={20}
                 name="search"/>
