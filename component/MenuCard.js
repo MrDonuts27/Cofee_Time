@@ -5,8 +5,10 @@ export default function MenuCard(props) {
     return (
         <View style={styles.Cardcontainer}>
             <TouchableOpacity>
-                    <Image style={styles.imgfream} source={require('../fakepic/1.jpg')} />
-                <View style={styles.Cardcontent}>{props.children}</View>
+                <Image style={styles.imgfream} source={{ uri: props.image }} />
+                <View style={styles.Cardcontent}>
+                    <Text style>{props.name}</Text>
+                </View>
             </TouchableOpacity>
         </View>
     );

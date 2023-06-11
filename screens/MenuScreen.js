@@ -1,34 +1,41 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import MenuCard from '../component/MenuCard';
 import SearchBar from '../component/SearchBar';
 import { GlobalStyles } from '../styles/GlobalStyles';
+import { collection, getDocs } from 'firebase/firestore/lite';
 import { DB } from '../AppConfig/firebase';
 
 export default function MenuScreen() {
+    const [menuList, setMenuList] = useState([]);
 
-    const getMenu = async (DB) => {
-        const menuCol = collection(DB, 'cities');
-        const menuSnapshot = await getDocs(menuCol);
-        const menuList = menuSnapshot.docs.map(doc => doc.data());
-    };
+    useEffect(() => {
+        const getMenu = async () => {
+            try {
+                const menuColRef = collection(DB, 'Coffee-Menu');
+                const menuSnapshot = await getDocs(menuColRef);
+                const menuListData = menuSnapshot.docs.map(doc => doc.data());
+                setMenuList(menuListData);
+            } catch (error) {
+                console.error('Error fetching menu:', error);
+            }
+        };
+
+        getMenu();
+        console.log(menuList);
+    }, []);
 
     return (
         <SafeAreaView style={GlobalStyles.SafeAreaViewstyle}>
             <SearchBar />
-            <ScrollView contentContainerStyle={styles.view}
-                showsVerticalScrollIndicator={false}>
-                {menuList.map((item) => (
-                    <MenuCard props={item} />
+            <ScrollView contentContainerStyle={styles.view} showsVerticalScrollIndicator={false}>
+                {menuList.map(item => (
+                    <MenuCard {...item} />
                 ))}
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
             </ScrollView>
         </SafeAreaView>
-
     );
-};
+}
 
 const styles = StyleSheet.create({
     view: {
@@ -36,6 +43,6 @@ const styles = StyleSheet.create({
         paddingBottom: 80,
         flexWrap: 'wrap',
         flexDirection: 'row',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
 });
