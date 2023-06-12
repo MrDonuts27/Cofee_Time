@@ -106,7 +106,8 @@ const EditprofileScreen = ({ navigation }) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}>
       <View style={styles.profileContainer}>
-        <Image source={require('../fakepic/2.jpg')} style={styles.profileImage} />
+        <Image source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/coffee-time-76b8f.appspot.com/o/coffeePic%2F2.jpg?alt=media&token=44a5584d-be46-429e-bc77-d9971b410603&_gl=1*tldigs*_ga*MTM4ODg4OTMzMC4xNjg1MzUzNTAw*_ga_CW55HF8NVT*MTY4NjU1NjU2NS4xMC4xLjE2ODY1NTg1NDIuMC4wLjA.' }} 
+        style={styles.profileImage} />
         <TouchableOpacity style={styles.editProfileButton}>
           <Text style={styles.editProfileText}>Change Photo</Text>
         </TouchableOpacity>

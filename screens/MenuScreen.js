@@ -30,7 +30,7 @@ export default function MenuScreen() {
             <SearchBar />
             <ScrollView contentContainerStyle={styles.view} showsVerticalScrollIndicator={false}>
                 {menuList.map(item => (
-                    <MenuCard {...item} />
+                    <MenuCard key={item.id} {...item} />
                 ))}
             </ScrollView>
         </SafeAreaView>

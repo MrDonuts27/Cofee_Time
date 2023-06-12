@@ -8,7 +8,7 @@ export default function HomeScreen() {
             <View style={styles.viewContainer}>
                 <Text style={GlobalStyles.H1}>News</Text>
                 <View style={styles.box}>
-                    <Image source={require('../fakepic/2.jpg')}
+                    <Image source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/coffee-time-76b8f.appspot.com/o/coffeePic%2F2.jpg?alt=media&token=44a5584d-be46-429e-bc77-d9971b410603&_gl=1*tldigs*_ga*MTM4ODg4OTMzMC4xNjg1MzUzNTAw*_ga_CW55HF8NVT*MTY4NjU1NjU2NS4xMC4xLjE2ODY1NTg1NDIuMC4wLjA.' }}
                         resizeMode="contain"
                         style={styles.imgSize}
                     />
