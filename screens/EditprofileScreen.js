@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, TextInput, Text, Alert, KeyboardAvoidingView, Platform } from 'react-native';
-import { auth } from '../firebase';
+import { auth } from '../AppConfig/firebase';
 import { reauthenticateWithCredential, EmailAuthProvider, updateEmail, updatePassword, signOut } from 'firebase/auth';
 
 const EditprofileScreen = ({ navigation }) => {

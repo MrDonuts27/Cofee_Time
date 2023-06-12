@@ -1,45 +1,48 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView,StatusBar } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import MenuCard from '../component/MenuCard';
 import SearchBar from '../component/SearchBar';
 import { GlobalStyles } from '../styles/GlobalStyles';
+import { collection, getDocs } from 'firebase/firestore/lite';
+import { DB } from '../AppConfig/firebase';
 
-export default function MenuScreen(){
+export default function MenuScreen() {
+    const [menuList, setMenuList] = useState([]);
+
+    useEffect(() => {
+        const getMenu = async () => {
+            try {
+                const menuColRef = collection(DB, 'Coffee-Menu');
+                const menuSnapshot = await getDocs(menuColRef);
+                const menuListData = menuSnapshot.docs.map(doc => doc.data());
+                setMenuList(menuListData);
+            } catch (error) {
+                console.error('Error fetching menu:', error);
+            }
+        };
+
+        getMenu();
+        console.log(menuList);
+    }, []);
+
     return (
         <SafeAreaView style={GlobalStyles.SafeAreaViewstyle}>
-            <SearchBar/>
-            <ScrollView contentContainerStyle={styles.view} 
-            showsVerticalScrollIndicator={false}>
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
-                <MenuCard>
-                    <Text style={{ fontSize: 16 }}>Cappuchino</Text>
-                </MenuCard>
+            <SearchBar />
+            <ScrollView contentContainerStyle={styles.view} showsVerticalScrollIndicator={false}>
+                {menuList.map(item => (
+                    <MenuCard {...item} />
+                ))}
             </ScrollView>
         </SafeAreaView>
-
     );
-};
+}
 
 const styles = StyleSheet.create({
-    view : {
+    view: {
         paddingTop: 5,
         paddingBottom: 80,
-        flexWrap : 'wrap',
-        flexDirection : 'row',
-        justifyContent : 'space-around'
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     },
 });
