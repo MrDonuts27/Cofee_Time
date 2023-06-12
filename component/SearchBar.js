@@ -9,7 +9,7 @@ export default function SearchBar() {
                 marginVertical: 15,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: 0,
+                marginBottom: 10,
             }}>
             <TextInput
                 style={{

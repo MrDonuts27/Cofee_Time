@@ -28,7 +28,7 @@ const MapScreen = () => {
 
   return (
     <View style={GlobalStyles.SafeAreaViewstyle}>
-      <View>
+      <View style={{backgroundColor:'transparent'}}>
         <SearchBar />
       </View>
       <View style={styles.container}>

@@ -11,11 +11,9 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import EditprofileScreen from '../screens/EditprofileScreen';
-import { auth , currentUser } from '../AppConfig/firebase';
+import { auth, currentUser } from '../AppConfig/firebase';
 import { signOut } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-
-
 
 const ProfileStack = createStackNavigator();
 
@@ -26,8 +24,8 @@ const ProductCard = () => {
 
             <Image
                 style={styles.image}
-                resizeMode="center"
-                source={require('../fakepic/2.jpg')}
+
+                source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/coffee-time-76b8f.appspot.com/o/coffeePic%2F2.jpg?alt=media&token=44a5584d-be46-429e-bc77-d9971b410603&_gl=1*tldigs*_ga*MTM4ODg4OTMzMC4xNjg1MzUzNTAw*_ga_CW55HF8NVT*MTY4NjU1NjU2NS4xMC4xLjE2ODY1NTg1NDIuMC4wLjA.' }}
             />
             <Text style={styles.title}>Product</Text>
 
@@ -39,24 +37,24 @@ const ProfilePage = ({ navigation }) => {
     const [userEmail, setUserEmail] = useState('');
 
     useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) {
-          setUserEmail(user.email);
-        }
-      });
-  
-      return () => unsubscribe();
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUserEmail(user.email);
+            }
+        });
+
+        return () => unsubscribe();
     }, []);
 
     const handleLogout = () => {
         signOut(auth)
             .then(() => {
-              navigation.navigate('SignIn');
+                navigation.navigate('SignIn');
             })
             .catch((error) => {
-              console.error('Logout Error:', error);
+                console.error('Logout Error:', error);
             });
-        };
+    };
 
     return (
         <SafeAreaView style={GlobalStyles.SafeAreaViewstyle}>
@@ -67,7 +65,8 @@ const ProfilePage = ({ navigation }) => {
                 }}>
                     Profile
                 </Text>
-                <Image source={require('../fakepic/2.jpg')} style={styles.profileImage} />
+                <Image source={{ uri: 'https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?auto=compress&fm=pjpg' }}
+                    style={styles.profileImage} />
                 <Text style={[styles.cardTitle, { color: 'black' }]}>{userEmail}</Text>
                 {/*ชื่อ user*/}
                 <TouchableOpacity style={styles.editProfileButton} onPress={() => navigation.navigate('Edit Profile')}>
@@ -141,6 +140,8 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 50,
         marginBottom: 10,
+        borderWidth: 5,
+        borderColor: '#000000',
     },
     editProfileButton: {
         backgroundColor: '#4B1F0B',
